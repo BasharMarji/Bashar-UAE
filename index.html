@@ -8990,6 +8990,345 @@
       }
     }
 
+  
+    /* Final refinement: About headline spacing + Consulting Personal Note */
+    #page-about .about-h1{
+      max-width:1120px !important;
+      font-size:clamp(46px, 7.2vw, 112px) !important;
+      line-height:1.02 !important;
+      letter-spacing:-.04em !important;
+      overflow:visible !important;
+    }
+
+    #page-about .about-h1 .uncover{
+      display:block !important;
+      width:100% !important;
+      overflow:visible !important;
+      padding-bottom:.06em !important;
+    }
+
+    #page-about .about-h1 .uncover-inner{
+      line-height:1.02 !important;
+      overflow:visible !important;
+    }
+
+    @media (max-width:760px){
+      #page-about .about-h1{
+        font-size:clamp(40px, 12vw, 72px) !important;
+        line-height:1.08 !important;
+      }
+    }
+
+    .personal-note-card{
+      position:relative;
+      max-width:1120px !important;
+      margin:0 auto 58px !important;
+      padding:clamp(30px, 4.8vw, 58px) !important;
+      border-radius:34px;
+      background:rgba(255,255,255,.045) !important;
+      border:1px solid rgba(255,255,255,.11) !important;
+      box-shadow:0 24px 70px rgba(0,0,0,.20) !important;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .personal-note-card::before{
+      content:"";
+      position:absolute;
+      left:clamp(30px, 4.8vw, 58px);
+      top:0;
+      width:140px;
+      height:2px;
+      background:linear-gradient(90deg, #2FBAFF, transparent);
+      box-shadow:0 0 26px rgba(47,186,255,.45);
+    }
+
+    .personal-note-card::after{
+      content:"";
+      position:absolute;
+      inset:-20% -10% auto auto;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(47,186,255,.16), transparent 66%);
+      z-index:-1;
+      animation:personalGlow 5.5s ease-in-out infinite;
+    }
+
+    .personal-note-kicker{
+      display:block;
+      margin-bottom:16px;
+      color:#2FBAFF;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+
+    .personal-note-title{
+      width:max-content;
+      max-width:100%;
+      margin:0 0 28px;
+      color:#fff;
+      font-family:"Cormorant Garamond", serif;
+      font-size:clamp(52px, 7.4vw, 118px);
+      line-height:.92;
+      letter-spacing:-.055em;
+      white-space:nowrap;
+      overflow:hidden;
+      border-right:3px solid #2FBAFF;
+      animation:personalTitleTyping 1.35s steps(15, end) both, personalCursor .9s steps(1, end) infinite;
+    }
+
+    .personal-note-text{
+      max-width:960px;
+      margin:0 0 14px !important;
+      color:#c6d3df;
+      font-size:clamp(16px, 1.55vw, 20px);
+      line-height:1.85;
+      letter-spacing:.005em;
+      opacity:0;
+      transform:translateY(18px);
+      animation:personalTextReveal .8s cubic-bezier(.22,1,.36,1) forwards;
+    }
+
+    .personal-note-text span{
+      color:#2FBAFF;
+      font-weight:900;
+      text-shadow:0 0 22px rgba(47,186,255,.22);
+      background:linear-gradient(90deg, rgba(47,186,255,.12), rgba(47,186,255,.02));
+      border-radius:999px;
+      padding:0 .22em;
+      box-decoration-break:clone;
+      -webkit-box-decoration-break:clone;
+    }
+
+    .type-line-1{ animation-delay:.55s; }
+    .type-line-2{ animation-delay:.80s; }
+    .type-line-3{ animation-delay:1.05s; }
+
+    @keyframes personalTitleTyping{
+      from{ max-width:0; }
+      to{ max-width:100%; }
+    }
+
+    @keyframes personalCursor{
+      0%,49%{ border-right-color:#2FBAFF; }
+      50%,100%{ border-right-color:transparent; }
+    }
+
+    @keyframes personalTextReveal{
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes personalGlow{
+      0%,100%{ transform:scale(1); opacity:.7; }
+      50%{ transform:scale(1.16); opacity:1; }
+    }
+
+    @media (max-width:640px){
+      .personal-note-card{
+        border-radius:26px;
+        padding:28px 22px !important;
+      }
+
+      .personal-note-title{
+        font-size:clamp(44px, 15vw, 72px);
+        white-space:normal;
+        line-height:1;
+      }
+
+      .personal-note-text{
+        font-size:16px;
+        line-height:1.75;
+      }
+    }
+
+    /* Requested refinement: remove About Tagline label and make Personal Note title match About hero style */
+    .personal-note-card{
+      max-width:1120px !important;
+      margin:0 0 78px !important;
+      padding:0 !important;
+      border-radius:0 !important;
+      background:transparent !important;
+      border:0 !important;
+      box-shadow:none !important;
+      overflow:visible !important;
+      isolation:auto !important;
+    }
+
+    .personal-note-card::before,
+    .personal-note-card::after{
+      display:none !important;
+      content:none !important;
+    }
+
+    .personal-note-kicker{
+      display:none !important;
+    }
+
+    .personal-note-title{
+      display:block !important;
+      width:auto !important;
+      max-width:1120px !important;
+      margin:0 0 36px !important;
+      color:#fff !important;
+      font-family:"Cormorant Garamond", serif !important;
+      font-size:clamp(46px, 7.2vw, 112px) !important;
+      line-height:1.02 !important;
+      letter-spacing:-.04em !important;
+      white-space:normal !important;
+      overflow:visible !important;
+      border-right:0 !important;
+      animation:personalTitleReveal .75s cubic-bezier(.22,1,.36,1) both !important;
+    }
+
+    @keyframes personalTitleReveal{
+      from{ opacity:0; transform:translateY(22px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+
+    /* Consulting Personal Note: open layout + animated right-side spheres */
+    #page-consulting .personal-note-card{
+      max-width:1180px !important;
+      margin:0 0 84px !important;
+    }
+
+    .personal-note-layout{
+      display:grid;
+      grid-template-columns:minmax(0, 1.08fr) minmax(320px, .92fr);
+      gap:clamp(28px, 5vw, 74px);
+      align-items:center;
+    }
+
+    .personal-note-copy{
+      position:relative;
+      z-index:2;
+    }
+
+    #page-consulting .personal-note-text{
+      max-width:720px !important;
+    }
+
+    #page-consulting .personal-note-text span{
+      color:#2FBAFF !important;
+      font-weight:900;
+      text-shadow:0 0 24px rgba(47,186,255,.26);
+      background:none !important;
+      border-radius:0 !important;
+      padding:0 !important;
+      box-shadow:none !important;
+    }
+
+    .consulting-motion-area{
+      position:relative;
+      min-height:520px;
+      display:grid;
+      place-items:center;
+      overflow:visible;
+      isolation:isolate;
+    }
+
+    .consulting-motion-orbit{
+      position:absolute;
+      border:1px solid rgba(47,186,255,.16);
+      border-radius:50%;
+      box-shadow:0 0 38px rgba(47,186,255,.08), inset 0 0 30px rgba(47,186,255,.03);
+      animation:consultingOrbitSpin 18s linear infinite;
+    }
+
+    .consulting-motion-orbit.orbit-1{ width:420px; height:420px; }
+    .consulting-motion-orbit.orbit-2{ width:310px; height:310px; animation-duration:13s; animation-direction:reverse; opacity:.72; }
+    .consulting-motion-orbit.orbit-3{ width:205px; height:205px; animation-duration:9s; opacity:.58; }
+
+    .consulting-motion-core{
+      width:148px;
+      height:148px;
+      border-radius:50%;
+      background:radial-gradient(circle at 34% 28%, rgba(255,255,255,.85), rgba(126,223,255,.48) 22%, rgba(47,186,255,.22) 50%, rgba(47,186,255,.04) 72%);
+      border:1px solid rgba(223,251,255,.36);
+      box-shadow:0 0 80px rgba(47,186,255,.28), inset 0 0 34px rgba(255,255,255,.12);
+      animation:consultingCorePulse 3.8s ease-in-out infinite;
+      position:relative;
+      z-index:3;
+    }
+
+    .consulting-motion-core::after{
+      content:"";
+      position:absolute;
+      inset:-18px;
+      border-radius:50%;
+      border:1px solid rgba(47,186,255,.18);
+      animation:consultingRipple 2.8s ease-out infinite;
+    }
+
+    .motion-sphere{
+      position:absolute;
+      border-radius:50%;
+      background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.72), rgba(79,223,255,.42) 26%, rgba(47,186,255,.16) 60%, rgba(47,186,255,.03) 78%);
+      border:1px solid rgba(223,251,255,.25);
+      box-shadow:0 0 38px rgba(47,186,255,.20), inset 0 0 18px rgba(255,255,255,.10);
+      z-index:4;
+      animation:consultingSphereFloat 5.5s ease-in-out infinite;
+    }
+
+    .motion-sphere.s1{ width:58px; height:58px; top:54px; right:110px; animation-delay:-.6s; }
+    .motion-sphere.s2{ width:36px; height:36px; top:158px; left:66px; animation-delay:-1.4s; }
+    .motion-sphere.s3{ width:76px; height:76px; bottom:92px; right:72px; animation-delay:-2.2s; }
+    .motion-sphere.s4{ width:24px; height:24px; bottom:150px; left:118px; animation-delay:-3s; }
+    .motion-sphere.s5{ width:44px; height:44px; top:314px; right:210px; animation-delay:-3.8s; }
+
+    .motion-line{
+      position:absolute;
+      height:1px;
+      width:230px;
+      background:linear-gradient(90deg, transparent, rgba(47,186,255,.55), transparent);
+      opacity:.42;
+      transform-origin:center;
+      animation:consultingLineSweep 4.8s ease-in-out infinite;
+    }
+
+    .motion-line.l1{ top:166px; right:78px; transform:rotate(-24deg); }
+    .motion-line.l2{ bottom:164px; left:60px; transform:rotate(22deg); animation-delay:-2.1s; }
+
+    .motion-dot-grid{
+      position:absolute;
+      inset:56px 20px 46px 42px;
+      background-image:radial-gradient(rgba(47,186,255,.26) 1px, transparent 1.7px);
+      background-size:26px 26px;
+      opacity:.28;
+      mask-image:radial-gradient(circle, #000 32%, transparent 72%);
+      -webkit-mask-image:radial-gradient(circle, #000 32%, transparent 72%);
+      animation:consultingGridDrift 8s ease-in-out infinite;
+      z-index:1;
+    }
+
+    @keyframes consultingOrbitSpin{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+    @keyframes consultingCorePulse{ 0%,100%{ transform:scale(1); filter:brightness(1); } 50%{ transform:scale(1.07); filter:brightness(1.12); } }
+    @keyframes consultingRipple{ 0%{ transform:scale(.74); opacity:.72; } 100%{ transform:scale(1.38); opacity:0; } }
+    @keyframes consultingSphereFloat{ 0%,100%{ transform:translate3d(0,0,0) scale(1); } 50%{ transform:translate3d(14px,-18px,0) scale(1.08); } }
+    @keyframes consultingLineSweep{ 0%,100%{ opacity:.24; filter:blur(0); } 50%{ opacity:.68; filter:blur(.3px); } }
+    @keyframes consultingGridDrift{ 0%,100%{ transform:translate3d(0,0,0); opacity:.22; } 50%{ transform:translate3d(14px,-10px,0); opacity:.34; } }
+
+    @media (max-width:980px){
+      .personal-note-layout{ grid-template-columns:1fr; }
+      .consulting-motion-area{ min-height:340px; margin-top:6px; }
+      .consulting-motion-orbit.orbit-1{ width:310px; height:310px; }
+      .consulting-motion-orbit.orbit-2{ width:230px; height:230px; }
+      .consulting-motion-orbit.orbit-3{ width:150px; height:150px; }
+      .consulting-motion-core{ width:112px; height:112px; }
+    }
+
+    @media (max-width:560px){
+      .consulting-motion-area{ min-height:260px; }
+      .motion-sphere.s1{ right:40px; top:34px; }
+      .motion-sphere.s2{ left:38px; top:110px; }
+      .motion-sphere.s3{ right:32px; bottom:42px; }
+      .motion-line{ width:150px; }
+    }
+
+
   </style>
 </head>
 <body>
@@ -9288,8 +9627,7 @@
       <section class="about-page">
         <div class="container">
           <div class="about-title about-reveal">
-            <span class="about-eyebrow"><span class="uncover uncover-stagger-1"><span class="uncover-inner">Tagline</span></span></span>
-            <h1 class="about-h1"><span class="uncover uncover-stagger-2"><span class="uncover-inner">Consultant</span></span> <span class="uncover uncover-stagger-3"><span class="uncover-inner">| Empowering Digital Change</span></span> <span class="uncover uncover-stagger-4"><span class="uncover-inner">&amp; Corporate Excellence</span></span></h1>
+            <h1 class="about-h1"><span class="uncover uncover-stagger-2"><span class="uncover-inner">Empowering Digital Change</span></span> <span class="uncover uncover-stagger-3"><span class="uncover-inner">&amp; Corporate Excellence</span></span></h1>
           </div>
 
           <article class="about-block about-reveal">
@@ -9700,12 +10038,37 @@
     <section class="page" id="page-consulting">
       <div class="consulting-page-shell">
         <div class="container">
-          <div class="consulting-free-intro">
-            <p class="free-intro-text">
-              Consulting support across excellence, standards, strategy, performance, governance, organizational structuring, and future foresight — designed to strengthen execution and institutional maturity.
-            </p>
+          <div class="consulting-free-intro personal-note-card">
+            <div class="personal-note-layout">
+              <div class="personal-note-copy">
+                <span class="personal-note-kicker">Consulting Perspective</span>
+                <h2 class="personal-note-title">A Personal Note</h2>
+                <p class="personal-note-text type-line-1">
+                  Beyond <span>frameworks</span>, <span>dashboards</span>, and <span>strategic plans</span>, I believe that real improvement starts when people understand the purpose behind change.
+                </p>
+                <p class="personal-note-text type-line-2">
+                  For me, consulting is not only about delivering documents or recommendations. It is about helping teams gain <span>clarity</span>, build <span>confidence</span>, and create systems they can actually use.
+                </p>
+                <p class="personal-note-text type-line-3">
+                  I enjoy working with organizations that want to move beyond formal plans and turn ambition into <span>practical progress</span>, <span>measurable results</span>, and <span>lasting improvement</span>.
+                </p>
+              </div>
+              <div class="consulting-motion-area" aria-hidden="true">
+                <div class="motion-dot-grid"></div>
+                <div class="consulting-motion-orbit orbit-1"></div>
+                <div class="consulting-motion-orbit orbit-2"></div>
+                <div class="consulting-motion-orbit orbit-3"></div>
+                <div class="motion-line l1"></div>
+                <div class="motion-line l2"></div>
+                <div class="consulting-motion-core"></div>
+                <span class="motion-sphere s1"></span>
+                <span class="motion-sphere s2"></span>
+                <span class="motion-sphere s3"></span>
+                <span class="motion-sphere s4"></span>
+                <span class="motion-sphere s5"></span>
+              </div>
+            </div>
           </div>
-
           <div class="cap-list">
       <article class="cap-row in-view">
         <div class="cap-num"><span class="blue">01</span></div>

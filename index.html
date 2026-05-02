@@ -1627,7 +1627,7 @@
     }
 
   
-    /* Better vertical centering for Connect with Me icon */
+    /* Better vertical centering for Contact with me icon */
     .nav-flip-btn .flip-icon,
     .mini-flip-link .flip-icon{
       align-items:center !important;
@@ -2372,7 +2372,7 @@
     }
 
 
-    /* Shine animation for Connect with Me buttons */
+    /* Shine animation for Contact with me buttons */
     .nav-flip-cta,
     .mini-flip-cta{
       position: relative !important;
@@ -7174,7 +7174,7 @@
       }
     }
 
-    /* Connect with Me request form */
+    /* Contact with me request form */
     #page-contact .contact-section{
       padding:92px 0 104px;
     }
@@ -10024,14 +10024,14 @@
             </span>
           </button>
 
-          <button class="nav-btn nav-flip-btn page-link" data-page="consulting" type="button">
+          <button class="nav-btn nav-flip-btn page-link" data-page="expertise-areas" type="button">
             <span class="flip-label">Expertise Areas</span>
             <span class="flip-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M4 20V7h16v13H4Z"/><path d="M8 7V4h8v3"/><path d="M8 13h8"/></svg>
             </span>
           </button>
 
-          <button class="nav-btn nav-flip-btn page-link" data-page="digital-transformation" type="button">
+          <button class="nav-btn nav-flip-btn page-link" data-page="artificial-intelligence" type="button">
             <span class="flip-label">Artificial Intelligence</span>
             <span class="flip-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M5 6h7v5H5z"/><path d="M12 13h7v5h-7z"/><path d="M8.5 11.5l3 1.5"/><path d="M12.5 12.5l3-1.5"/></svg>
@@ -10045,7 +10045,7 @@
           </button>
 
           <button class="nav-btn nav-flip-btn nav-flip-cta page-link" data-page="contact" type="button">
-            <span class="flip-label">Connect with Me</span>
+            <span class="flip-label">Contact with me</span>
             <span class="flip-icon" aria-hidden="true">
                   <svg class="collaborate-icon" viewBox="0 0 24 24" aria-hidden="true">
   <circle class="line head-left" cx="7" cy="6.5" r="2.1"/>
@@ -10099,14 +10099,14 @@
                   </span>
                 </button>
 
-                <button class="mini-flip-link page-link" data-page="consulting" type="button">
+                <button class="mini-flip-link page-link" data-page="expertise-areas" type="button">
                   <span class="flip-label">Expertise Areas</span>
                   <span class="flip-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24"><path d="M4 20V7h16v13H4Z"/><path d="M8 7V4h8v3"/><path d="M8 13h8"/></svg>
                   </span>
                 </button>
 
-                <button class="mini-flip-link page-link" data-page="digital-transformation" type="button">
+                <button class="mini-flip-link page-link" data-page="artificial-intelligence" type="button">
                   <span class="flip-label">Artificial Intelligence</span>
                   <span class="flip-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24"><path d="M5 6h7v5H5z"/><path d="M12 13h7v5h-7z"/><path d="M8.5 11.5l3 1.5"/><path d="M12.5 12.5l3-1.5"/></svg>
@@ -10120,7 +10120,7 @@
                 </button>
 
                 <button class="mini-flip-link mini-flip-cta page-link" data-page="contact" type="button">
-                  <span class="flip-label">Connect with Me</span>
+                  <span class="flip-label">Contact with me</span>
                   <span class="flip-icon" aria-hidden="true">
                   <svg class="collaborate-icon" viewBox="0 0 24 24" aria-hidden="true">
   <circle class="line head-left" cx="7" cy="6.5" r="2.1"/>
@@ -10156,7 +10156,7 @@
                   </p>
 
                   <div class="hero-actions">
-                    <button class="btn btn-primary page-link" data-page="contact" type="button">Connect with Me</button>
+                    <button class="btn btn-primary page-link" data-page="contact" type="button">Contact with me</button>
                     <button class="btn btn-secondary page-link" data-page="about" type="button">Learn More</button>
                   </div>
                 </div>
@@ -10586,7 +10586,7 @@
     </section>
 
     <!-- EXPERTISE AREAS -->
-    <section class="page" id="page-consulting">
+    <section class="page" id="page-expertise-areas">
       <div class="consulting-page-shell">
         <div class="container">
           <div class="consulting-free-intro personal-note-card">
@@ -10756,7 +10756,7 @@
     </section>
 
     <!-- AI SOLUTIONS -->
-    <section class="page light-page" id="page-digital-transformation">
+    <section class="page light-page" id="page-artificial-intelligence">
       <div class="section">
         <div class="container">
           <div class="consulting-page-shell">
@@ -11000,7 +11000,7 @@
         <div class="container">
           <div class="collaborate-shell">
             <div class="collaborate-intro">
-              <h2>Connect with Me</h2>
+              <h2>Contact with me</h2>
             </div>
 
             <form class="collaborate-form" id="collaborateForm">
@@ -12446,35 +12446,86 @@
 
     runIntroSplash();
 
-    function setActiveNav(pageName){
+    
+function setActiveNav(pageName){
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.nav-btn[data-page="' + pageName + '"]').forEach(btn => btn.classList.add('active'));
     }
 
+    function activatePage(pageName, instant = false){
+      const pageAliases = {
+        'consulting': 'expertise-areas',
+        'digital-transformation': 'artificial-intelligence'
+      };
+
+      pageName = pageAliases[pageName] || pageName;
+
+      const target = document.getElementById('page-' + pageName);
+      if(!target) return;
+
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active', 'exiting'));
+      document.body.classList.toggle('home-active', pageName === 'home');
+      target.classList.add('active');
+      setActiveNav(pageName);
+
+      try{
+        const newUrl = pageName === 'home' ? '/' : '/#' + pageName;
+        if(window.location.protocol === 'file:'){
+          history.replaceState(null, '', pageName === 'home' ? window.location.pathname : '#' + pageName);
+        }else{
+          history.replaceState(null, '', newUrl);
+        }
+      }catch(error){
+        if(pageName !== 'home'){
+          try { window.location.hash = pageName; } catch(ignore) {}
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'auto' });
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(updateCertificationScrollEffects);
+      });
+    }
+
     function openPageWithTransition(pageName, instant = false){
+      const pageAliases = {
+        'consulting': 'expertise-areas',
+        'digital-transformation': 'artificial-intelligence'
+      };
+
+      pageName = pageAliases[pageName] || pageName;
+
       const target = document.getElementById('page-' + pageName);
       if(!target) return;
 
       const current = document.querySelector('.page.active');
-      if(current === target || pageSwitching) return;
+      if(current === target){
+        setActiveNav(pageName);
+        return;
+      }
 
+      if(pageSwitching) return;
       pageSwitching = true;
-      setActiveNav(pageName);
-      history.replaceState(null, '', '#' + pageName);
 
-      const activateTarget = () => {
-        document.querySelectorAll('.page').forEach(page => page.classList.remove('active', 'exiting'));
-        document.body.classList.toggle('home-active', pageName === 'home');
-        target.classList.add('active');
-        window.scrollTo({top:0, behavior:'auto'});
+      const finishTransition = () => {
+        if(pageTransitionOverlay){
+          pageTransitionOverlay.classList.add('is-leaving');
+          pageTransitionOverlay.classList.remove('is-visible');
 
-        requestAnimationFrame(() => {
-          requestAnimationFrame(updateCertificationScrollEffects);
-        });
+          setTimeout(() => {
+            pageTransitionOverlay.classList.remove('is-leaving');
+            document.documentElement.classList.remove('transition-lock');
+            document.body.classList.remove('transition-lock');
+            pageSwitching = false;
+          }, 760);
+        } else {
+          pageSwitching = false;
+        }
       };
 
       if(instant || !pageTransitionOverlay){
-        activateTarget();
+        activatePage(pageName, true);
         pageSwitching = false;
         return;
       }
@@ -12486,18 +12537,10 @@
       pageTransitionOverlay.classList.add('is-visible');
 
       setTimeout(() => {
-        activateTarget();
+        activatePage(pageName);
 
         setTimeout(() => {
-          pageTransitionOverlay.classList.add('is-leaving');
-          pageTransitionOverlay.classList.remove('is-visible');
-
-          setTimeout(() => {
-            pageTransitionOverlay.classList.remove('is-leaving');
-            document.documentElement.classList.remove('transition-lock');
-            document.body.classList.remove('transition-lock');
-            pageSwitching = false;
-          }, 760);
+          finishTransition();
         }, 900);
       }, 720);
     }
@@ -12505,7 +12548,6 @@
     function showPage(pageName){
       openPageWithTransition(pageName, false);
     }
-
 
     function setupMobileMenu(toggleSelector, menuSelector){
       const toggle = document.querySelector(toggleSelector);
@@ -12546,24 +12588,36 @@
     setupMobileMenu('.mobile-hero-toggle', '#heroNavLinks');
 
     document.querySelectorAll('.page-link').forEach(link => {
-      link.addEventListener('click', () => {
-        showPage(link.dataset.page);
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const page = link.dataset.page;
+        if(page) showPage(page);
       });
     });
 
     let initialPage = window.location.hash.replace('#', '') || 'home';
     const pageAliases = {
-      'expertise-areas': 'consulting',
-      'artificial-intelligence': 'digital-transformation'
+      'consulting': 'expertise-areas',
+      'digital-transformation': 'artificial-intelligence'
     };
     initialPage = pageAliases[initialPage] || initialPage;
+
     if(document.getElementById('page-' + initialPage)){
-      openPageWithTransition(initialPage, true);
+      activatePage(initialPage, true);
     } else {
-      openPageWithTransition('home', true);
+      activatePage('home', true);
     }
 
+    window.addEventListener('hashchange', () => {
+      const hashPage = window.location.hash.replace('#', '') || 'home';
+      const targetPage = pageAliases[hashPage] || hashPage;
+      if(document.getElementById('page-' + targetPage)){
+        activatePage(targetPage, true);
+      }
+    });
+
     updateCertificationScrollEffects();
+
 
 
     function updateDubaiClock(){
@@ -12880,7 +12934,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 
 <style>
-/* Connect with Me form status message */
+/* Contact with me form status message */
 .collab-form-message{
   margin-top:16px;
   padding:13px 15px;
@@ -12918,7 +12972,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 
 <style>
-/* Connect with Me form: first/last and contact rows */
+/* Contact with me form: first/last and contact rows */
 #collaborateForm .collab-form-row{
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -12948,7 +13002,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 
 <style>
-/* Final Connect with Me layout: First/Last, then Phone/Email */
+/* Final Contact with me layout: First/Last, then Phone/Email */
 #collaborateForm .form-grid{
   display:grid !important;
   grid-template-columns:repeat(2, minmax(0, 1fr)) !important;

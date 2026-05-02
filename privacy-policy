@@ -10007,11 +10007,11 @@
       </button>
       <div class="nav-links" id="topNavLinks">
         <button class="nav-btn nav-flip-btn" onclick="location.href='/'" type="button"><span class="flip-label">Home</span><span class="flip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11v-9.5"/></svg></span></button>
-        <button class="nav-btn nav-flip-btn" onclick="location.href='/#about'" type="button"><span class="flip-label">About</span><span class="flip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4 21c1.6-4.2 4.2-6.3 8-6.3s6.4 2.1 8 6.3"/></svg></span></button>
-        <button class="nav-btn nav-flip-btn" onclick="location.href='/#expertise-areas'" type="button"><span class="flip-label">Expertise Areas</span><span class="flip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V7h16v13H4Z"/><path d="M8 7V4h8v3"/><path d="M8 13h8"/></svg></span></button>
-        <button class="nav-btn nav-flip-btn" onclick="location.href='/#artificial-intelligence'" type="button"><span class="flip-label">Artificial Intelligence</span><span class="flip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6h7v5H5z"/><path d="M12 13h7v5h-7z"/><path d="M8.5 11.5l3 1.5"/><path d="M12.5 12.5l3-1.5"/></svg></span></button>
-        <button class="nav-btn nav-flip-btn" onclick="location.href='/#blog'" type="button"><span class="flip-label">Blog</span><span class="flip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5V4Z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span></button>
-        <button class="nav-btn nav-flip-btn nav-flip-cta" onclick="location.href='/#contact'" type="button"><span class="flip-label">Contact with me</span><span class="flip-icon" aria-hidden="true"><svg class="collaborate-icon" viewBox="0 0 24 24" aria-hidden="true"><circle class="line head-left" cx="7" cy="6.5" r="2.1"/><circle class="line head-right" cx="17" cy="6.5" r="2.1"/><path class="line body-left" d="M3.8 15.5c.7-2.2 1.9-3.6 3.2-3.6s2.5 1.4 3.2 3.6"/><path class="line body-right" d="M13.8 15.5c.7-2.2 1.9-3.6 3.2-3.6s2.5 1.4 3.2 3.6"/><path class="line arm-left" d="M9.6 12.6 11.5 14.1"/><path class="line arm-right" d="M14.4 12.6 12.5 14.1"/><path class="line join" d="M11.3 14.1l.7.7c.2.2.6.2.8 0l.6-.6"/></svg></span></button>
+        <button class="nav-btn nav-flip-btn" onclick="location.href='index.html#about'" type="button"><span class="flip-label">About</span><span class="flip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4 21c1.6-4.2 4.2-6.3 8-6.3s6.4 2.1 8 6.3"/></svg></span></button>
+        <button class="nav-btn nav-flip-btn" onclick="location.href='index.html#expertise-areas'" type="button"><span class="flip-label">Expertise Areas</span><span class="flip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V7h16v13H4Z"/><path d="M8 7V4h8v3"/><path d="M8 13h8"/></svg></span></button>
+        <button class="nav-btn nav-flip-btn" onclick="location.href='index.html#artificial-intelligence'" type="button"><span class="flip-label">Artificial Intelligence</span><span class="flip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6h7v5H5z"/><path d="M12 13h7v5h-7z"/><path d="M8.5 11.5l3 1.5"/><path d="M12.5 12.5l3-1.5"/></svg></span></button>
+        <button class="nav-btn nav-flip-btn" onclick="location.href='index.html#blog'" type="button"><span class="flip-label">Blog</span><span class="flip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5V4Z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span></button>
+        <button class="nav-btn nav-flip-btn nav-flip-cta" onclick="location.href='index.html#contact'" type="button"><span class="flip-label">Contact with me</span><span class="flip-icon" aria-hidden="true"><svg class="collaborate-icon" viewBox="0 0 24 24" aria-hidden="true"><circle class="line head-left" cx="7" cy="6.5" r="2.1"/><circle class="line head-right" cx="17" cy="6.5" r="2.1"/><path class="line body-left" d="M3.8 15.5c.7-2.2 1.9-3.6 3.2-3.6s2.5 1.4 3.2 3.6"/><path class="line body-right" d="M13.8 15.5c.7-2.2 1.9-3.6 3.2-3.6s2.5 1.4 3.2 3.6"/><path class="line arm-left" d="M9.6 12.6 11.5 14.1"/><path class="line arm-right" d="M14.4 12.6 12.5 14.1"/><path class="line join" d="M11.3 14.1l.7.7c.2.2.6.2.8 0l.6-.6"/></svg></span></button>
       </div>
     </nav>
   </div>
@@ -10079,9 +10079,9 @@
                 <div class="footer-simple-lists" aria-label="Website footer links">
                   <div class="footer-simple-column">
                     <h3>About this website</h3>
-                    <a href="disclaimer.html">Disclaimer</a>
-                    <a href="copyright-notice.html">Copyright</a>
-                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="/disclaimer">Disclaimer</a>
+                    <a href="/copyright-notice">Copyright</a>
+                    <a href="/privacy-policy">Privacy Policy</a>
                   </div>
 
                   <div class="footer-simple-column">

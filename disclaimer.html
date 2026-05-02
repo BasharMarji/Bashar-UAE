@@ -9994,6 +9994,17 @@
 
 </head>
 <body>
+
+  <div class="page-transition-overlay" id="pageTransitionOverlay" aria-hidden="true">
+    <div class="transition-loader-core">
+      <div class="transition-loader-ring"></div>
+      <div class="transition-logo-wrap">
+        <img class="transition-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTA4IiBoZWlnaHQ9IjYyNyIgdmlld0JveD0iMCAwIDI1MDggNjI3IiBmaWxsPSJub25lIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjEyOCIgeTE9IjI5MyIgeDI9IjU2MiIgeTI9IjI5MyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxRTkwRkYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNjlDNkZGIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cGF0aCBkPSJNMzQ1IDc2QzM0NSAxOTcgNDQxIDI5MyA1NjIgMjkzQzQ0MSAyOTMgMzQ1IDM4OSAzNDUgNTEwQzM0NSAzODkgMjQ5IDI5MyAxMjggMjkzQzI0OSAyOTMgMzQ1IDE5NyAzNDUgNzZaIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iNjEwIiB5PSI0MDYiIGZpbGw9IiNGRkZGRkYiIGZvbnQtZmFtaWx5PSJHb29nbGUgU2FucywgUHJvZHVjdCBTYW5zLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4MCIgZm9udC13ZWlnaHQ9IjUwMCIgbGV0dGVyLXNwYWNpbmc9Ii03Ij5CYXNoYXIgTWFyamk8L3RleHQ+Cjwvc3ZnPg==" alt="Bashar Marji logo" />
+      </div>
+      <div class="transition-loader-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+
   
 <div class="cursor-glow" id="cursorGlow"></div>
 <div class="nav-wrap">
@@ -10116,6 +10127,63 @@
     window.addEventListener('resize',()=>{ if(window.innerWidth>860) closeMenu(); }, {passive:true});
   }
   setupMobileMenu('.mobile-top-toggle','#topNavLinks');
+</script>
+
+
+<script>
+(function initLegalPageLoadingOverlay(){
+  const overlay = document.getElementById('pageTransitionOverlay');
+  if(!overlay) return;
+
+  const showOverlayAndGo = (url) => {
+    if(!url) return;
+    const normalized = String(url).trim();
+    if(!normalized || normalized.startsWith('#')) {
+      window.location.href = normalized || window.location.href;
+      return;
+    }
+
+    document.documentElement.classList.add('transition-lock');
+    document.body.classList.add('transition-lock');
+    overlay.classList.remove('is-leaving');
+    overlay.classList.add('is-visible');
+
+    window.setTimeout(() => {
+      window.location.href = normalized;
+    }, 720);
+  };
+
+  document.querySelectorAll('a[href]').forEach((link) => {
+    const href = link.getAttribute('href') || '';
+    if(!href || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+
+    link.addEventListener('click', (event) => {
+      if(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if(link.getAttribute('target') === '_blank') return;
+      event.preventDefault();
+      showOverlayAndGo(link.href || href);
+    });
+  });
+
+  document.querySelectorAll('button[onclick]').forEach((button) => {
+    const onclick = button.getAttribute('onclick') || '';
+    const match = onclick.match(/location\.href\s*=\s*['"]([^'"]+)['"]/);
+    if(!match) return;
+    const url = match[1];
+
+    button.removeAttribute('onclick');
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      showOverlayAndGo(url);
+    });
+  });
+
+  window.addEventListener('pageshow', () => {
+    overlay.classList.remove('is-visible', 'is-leaving');
+    document.documentElement.classList.remove('transition-lock');
+    document.body.classList.remove('transition-lock');
+  });
+})();
 </script>
 
 </body>

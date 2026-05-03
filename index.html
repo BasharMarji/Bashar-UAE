@@ -10035,6 +10035,50 @@
 }
 </style>
 
+
+<style id="mobile-home-glow-remove-fix">
+@media (max-width: 768px) {
+  #page-home .hero-section::before,
+  #page-home .hero-section::after,
+  #page-home .hero-frame::before,
+  #page-home .hero-frame::after,
+  #page-home .hero-main::before,
+  #page-home .hero-main::after,
+  #page-home .home-principles-section::before,
+  #page-home .home-principles-section::after,
+  #page-home .home-today-section::before,
+  #page-home .home-today-section::after,
+  #page-home .news-bottom-bar::before,
+  #page-home .news-bottom-bar::after,
+  #page-home .screen-bottom-bar::before,
+  #page-home .screen-bottom-bar::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  #page-home .hero-section,
+  #page-home .hero-frame,
+  #page-home .hero-main,
+  #page-home .home-principles-section,
+  #page-home .home-today-section,
+  #page-home .news-bottom-bar,
+  #page-home .screen-bottom-bar {
+    min-height: auto !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  #page-home .hero-image-wrap,
+  #page-home .hero-photo {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+</style>
+
 </head>
 <body>
 

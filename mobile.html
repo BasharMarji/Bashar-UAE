@@ -190,8 +190,6 @@ body.m-open #mmenu button:nth-child(5){transition-delay:.36s}body.m-open #mmenu 
 @keyframes vSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 
 /* ================= NEURAL BACKGROUND ================= */
-#neural{position:fixed;inset:0;z-index:0;pointer-events:none}
-body.plain-bg #neural{display:none}
 .page,footer{position:relative;z-index:2}
 
 /* ================= SHARED TYPO ================= */
@@ -824,7 +822,6 @@ footer{background:var(--ink);color:var(--porcelain);padding:56px 0 34px;position
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
   .mask > *,.fade,.wipe,.hero-rule{transform:none !important;opacity:1 !important;clip-path:none !important}
   .cur-dot,.cur-ring{display:none}
-  #neural{display:none}
 }
 </style>
 
@@ -912,7 +909,6 @@ section{padding:72px 0}
   <svg class="v-spark" viewBox="102 48 486 486" fill="none"><defs><linearGradient id="vg" x1="128" y1="293" x2="562" y2="293" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1E90FF"/><stop offset="1" stop-color="#69C6FF"/></linearGradient></defs><path d="M345 76C345 197 441 293 562 293C441 293 345 389 345 510C345 389 249 293 128 293C249 293 345 197 345 76Z" fill="url(#vg)"/></svg>
 </div>
 
-<canvas id="neural" aria-hidden="true"></canvas>
 
 <!-- TAB BAR -->
 <div id="tabs">
@@ -1612,110 +1608,6 @@ const cObs = new IntersectionObserver(es => es.forEach(en => {
 }), {threshold:.6});
 
 /* role rotation removed (hero simplified) */
-
-/* ================= NEURAL NETWORK BACKGROUND ================= */
-const ncv = document.getElementById("neural");
-const nctx = ncv.getContext("2d");
-let nodes = [], pulses = [], W = 0, H = 0;
-let mouseX = -9999, mouseY = -9999;
-const LINK_D = 150;
-
-function nSize(){
-  W = innerWidth; H = innerHeight;
-  ncv.width = W * devicePixelRatio; ncv.height = H * devicePixelRatio;
-  nctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-  const count = Math.min(85, Math.floor(W*H/16000));
-  nodes = Array.from({length:count}, () => ({
-    x: Math.random()*W, y: Math.random()*H,
-    vx:(Math.random()-.5)*.28, vy:(Math.random()-.5)*.28,
-    r: 1.4 + Math.random()*2.2,
-    gold: Math.random() < .1,
-    tw: Math.random()*Math.PI*2, ts:.008 + Math.random()*.014
-  }));
-  pulses = [];
-}
-function drawStar(x,y,r,a,color){
-  nctx.save(); nctx.translate(x,y); nctx.globalAlpha = a; nctx.fillStyle = color;
-  nctx.beginPath();
-  nctx.moveTo(0,-r*2.4); nctx.quadraticCurveTo(r*.38,-r*.38, r*2.4,0);
-  nctx.quadraticCurveTo(r*.38,r*.38, 0,r*2.4); nctx.quadraticCurveTo(-r*.38,r*.38, -r*2.4,0);
-  nctx.quadraticCurveTo(-r*.38,-r*.38, 0,-r*2.4); nctx.fill(); nctx.restore();
-}
-let scrollDrift = 0;
-function nLoop(){
-  nctx.clearRect(0,0,W,H);
-  /* parallax: network drifts upward slowly as the page scrolls down */
-  const targetDrift = scrollY * .22;
-  scrollDrift += (targetDrift - scrollDrift) * .06;
-
-  /* move nodes */
-  for(const n of nodes){
-    n.x += n.vx; n.y += n.vy; n.tw += n.ts;
-    /* gentle mouse repulsion */
-    const dx = n.x - mouseX, dy = (n.y - scrollDrift % H) - mouseY;
-    const d2 = dx*dx + dy*dy;
-    if(d2 < 16000){ const f = (16000 - d2)/16000 * .5; n.x += dx/Math.sqrt(d2+.1)*f; n.y += dy/Math.sqrt(d2+.1)*f; }
-    if(n.x < -20) n.x = W+20; if(n.x > W+20) n.x = -20;
-    if(n.y < -20) n.y = H+20; if(n.y > H+20) n.y = -20;
-  }
-  const oy = -(scrollDrift % H);
-
-  /* links (drawn twice for vertical wrap so drift is seamless) */
-  for(const off of [oy, oy + H]){
-    nctx.lineWidth = 1;
-    for(let i=0;i<nodes.length;i++){
-      const a = nodes[i];
-      for(let j=i+1;j<nodes.length;j++){
-        const b = nodes[j];
-        const dx = a.x-b.x, dy = a.y-b.y, d = Math.hypot(dx,dy);
-        if(d < LINK_D){
-          const al = (1 - d/LINK_D) * .14;
-          nctx.strokeStyle = `rgba(10,24,38,${al})`;
-          nctx.beginPath(); nctx.moveTo(a.x, a.y+off); nctx.lineTo(b.x, b.y+off); nctx.stroke();
-        }
-      }
-    }
-    /* nodes */
-    for(const n of nodes){
-      const breathe = .35 + Math.abs(Math.sin(n.tw))*.45;
-      if(n.gold){ drawStar(n.x, n.y+off, n.r*.85, breathe, "#B09460"); }
-      else{
-        nctx.globalAlpha = breathe;
-        nctx.fillStyle = "#0A1826";
-        nctx.beginPath(); nctx.arc(n.x, n.y+off, n.r, 0, 7); nctx.fill();
-        nctx.globalAlpha = 1;
-      }
-    }
-    /* pulses travelling along links */
-    for(const p of pulses){
-      const a = nodes[p.a], b = nodes[p.b];
-      const x = a.x + (b.x-a.x)*p.t, y = a.y + (b.y-a.y)*p.t + off;
-      const grad = nctx.createRadialGradient(x,y,0,x,y,7);
-      grad.addColorStop(0,"rgba(30,144,255,.9)"); grad.addColorStop(1,"rgba(30,144,255,0)");
-      nctx.fillStyle = grad;
-      nctx.beginPath(); nctx.arc(x,y,7,0,7); nctx.fill();
-      nctx.fillStyle = "#1E90FF";
-      nctx.beginPath(); nctx.arc(x,y,1.8,0,7); nctx.fill();
-    }
-  }
-  /* update + spawn pulses */
-  pulses = pulses.filter(p => (p.t += p.s) < 1);
-  if(pulses.length < 7 && Math.random() < .07){
-    const i = Math.floor(Math.random()*nodes.length);
-    let best = -1, bd = LINK_D;
-    for(let j=0;j<nodes.length;j++){ if(j===i) continue;
-      const d = Math.hypot(nodes[i].x-nodes[j].x, nodes[i].y-nodes[j].y);
-      if(d < bd){ bd = d; best = j; }
-    }
-    if(best >= 0) pulses.push({a:i, b:best, t:0, s:.012 + Math.random()*.02});
-  }
-  requestAnimationFrame(nLoop);
-}
-if(!reduced){
-  nSize(); nLoop();
-  addEventListener("resize", nSize);
-  if(!isTouch) addEventListener("mousemove", e => { mouseX = e.clientX; mouseY = e.clientY; });
-}
 
 /* ================= SCROLL: tab progress + back-top ================= */
 const tProg = document.getElementById("tProg");

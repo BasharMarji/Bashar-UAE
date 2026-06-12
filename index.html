@@ -567,38 +567,24 @@ body.m-open #mmenu button:nth-child(5){transition-delay:.36s}body.m-open #mmenu 
 @media(max-width:700px){.edu-meta{text-align:left}}
 .edu-meta b{color:var(--gold);font-weight:700}
 
-/* ================= CREDENTIALS — hex badges ================= */
-.hexes{
-  display:flex;flex-wrap:wrap;gap:46px 38px;justify-content:center;
-  position:relative;z-index:3;padding:10px 0 20px;
+/* ================= CREDENTIALS — quiet ledger ================= */
+.cred-list{
+  display:grid;grid-template-columns:1fr 1fr;gap:0 60px;
+  border-top:1px solid var(--ink);position:relative;z-index:3;
 }
-.hexw{
-  display:flex;flex-direction:column;align-items:center;gap:16px;
-  width:208px;text-align:center;
+@media(max-width:760px){.cred-list{grid-template-columns:1fr;gap:0}}
+.cred-row{
+  display:grid;grid-template-columns:118px 1fr;gap:22px;align-items:center;
+  padding:20px 6px;border-bottom:1px solid var(--hairline);
+  transition:.35s var(--ease);
 }
-.hex{
-  position:relative;width:148px;height:167px;display:grid;place-items:center;
-  transition:transform .55s var(--ease), filter .55s var(--ease);
-  filter:drop-shadow(0 16px 24px rgba(10,24,38,.2));
-}
-.hexw:hover .hex{
-  transform:translateY(-7px) rotate(3deg);
-  filter:drop-shadow(0 24px 34px rgba(11,95,184,.3));
-}
-.hex svg.shape{position:absolute;inset:0;width:100%;height:100%}
-.hex-in{position:relative;text-align:center;color:#fff;padding:0 14px}
-.hex-in .ha{font-family:var(--font-d);font-weight:500;font-size:25px;line-height:1;letter-spacing:.01em}
-.hex-in small{
-  display:block;font-family:var(--font-m);font-size:7.2px;letter-spacing:.36em;
-  text-transform:uppercase;color:#9BDCFF;margin-top:8px;
-}
-.hex .hx-spark{
-  position:absolute;top:24px;left:50%;transform:translateX(-50%);
-  width:13px;height:13px;opacity:.9;
-}
-.hexw .hx-t{font-size:13.5px;font-weight:600;line-height:1.4;color:var(--ink)}
-.hexw .hx-t small{display:block;color:var(--mist);font-weight:400;font-size:11.5px;margin-top:3px}
-.hexw:hover .hx-t{color:var(--azure-ink)}
+.cred-row:hover{padding-left:16px;background:var(--paper)}
+.cd-acro{font-family:var(--font-d);font-weight:500;font-size:21px;white-space:nowrap}
+.cd-acro::after{content:" \2726";color:var(--gold);font-size:11px}
+.cred-row:hover .cd-acro{color:var(--azure-ink)}
+.cd-name{font-size:14px;font-weight:700;line-height:1.3}
+.cd-name small{display:block;font-weight:500;font-size:12px;color:var(--mist);margin-top:3px}
+@media(max-width:520px){.cred-row{grid-template-columns:92px 1fr;gap:14px}.cd-acro{font-size:17px}}
 
 /* ================= AI PAGE ================= */
 .bot-stage{
@@ -931,92 +917,36 @@ footer{background:var(--ink);color:var(--porcelain);padding:56px 0 34px;position
           <h2 class="h-display mask" ><span>Professional <span class="gd">credentials</span></span></h2>
         </div>
       </div>
-      <div class="hexes">
-        <div class="hexw fade">
-          <div class="hex">
-            <svg class="shape" viewBox="0 0 148 167">
-              <defs><linearGradient id="hxg0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14304E"/><stop offset="1" stop-color="#0A1826"/></linearGradient></defs>
-              <path d="M74 2 L142 43 V124 L74 165 L6 124 V43 Z" fill="url(#hxg0)" stroke="#1E90FF" stroke-opacity=".5" stroke-width="1.5"/>
-              <path d="M74 15 L130 49 V118 L74 152 L18 118 V49 Z" fill="none" stroke="#B09460" stroke-opacity=".5"/>
-            </svg>
-            <svg class="hx-spark" viewBox="102 48 486 486" fill="none"><path d="M345 76C345 197 441 293 562 293C441 293 345 389 345 510C345 389 249 293 128 293C249 293 345 197 345 76Z" fill="#B09460"/></svg>
-            <div class="hex-in"><div class="ha" style="white-space:nowrap">PMP</div><small>Certified</small></div>
-          </div>
-          <div class="hx-t">Project Management<small>Professional</small></div>
-        </div>
-        <div class="hexw fade dl1">
-          <div class="hex">
-            <svg class="shape" viewBox="0 0 148 167">
-              <defs><linearGradient id="hxg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14304E"/><stop offset="1" stop-color="#0A1826"/></linearGradient></defs>
-              <path d="M74 2 L142 43 V124 L74 165 L6 124 V43 Z" fill="url(#hxg1)" stroke="#1E90FF" stroke-opacity=".5" stroke-width="1.5"/>
-              <path d="M74 15 L130 49 V118 L74 152 L18 118 V49 Z" fill="none" stroke="#B09460" stroke-opacity=".5"/>
-            </svg>
-            <svg class="hx-spark" viewBox="102 48 486 486" fill="none"><path d="M345 76C345 197 441 293 562 293C441 293 345 389 345 510C345 389 249 293 128 293C249 293 345 197 345 76Z" fill="#B09460"/></svg>
-            <div class="hex-in"><div class="ha" style="white-space:nowrap">EFQM</div><small>Certified</small></div>
-          </div>
-          <div class="hx-t">Certified Assessor<small>Excellence Models</small></div>
-        </div>
-        <div class="hexw fade dl2">
-          <div class="hex">
-            <svg class="shape" viewBox="0 0 148 167">
-              <defs><linearGradient id="hxg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14304E"/><stop offset="1" stop-color="#0A1826"/></linearGradient></defs>
-              <path d="M74 2 L142 43 V124 L74 165 L6 124 V43 Z" fill="url(#hxg2)" stroke="#1E90FF" stroke-opacity=".5" stroke-width="1.5"/>
-              <path d="M74 15 L130 49 V118 L74 152 L18 118 V49 Z" fill="none" stroke="#B09460" stroke-opacity=".5"/>
-            </svg>
-            <svg class="hx-spark" viewBox="102 48 486 486" fill="none"><path d="M345 76C345 197 441 293 562 293C441 293 345 389 345 510C345 389 249 293 128 293C249 293 345 197 345 76Z" fill="#B09460"/></svg>
-            <div class="hex-in"><div class="ha" style="white-space:nowrap">CAIE</div><small>Certified</small></div>
-          </div>
-          <div class="hx-t">Certified AI Expert<small>Artificial Intelligence</small></div>
-        </div>
-        <div class="hexw fade dl3">
-          <div class="hex">
-            <svg class="shape" viewBox="0 0 148 167">
-              <defs><linearGradient id="hxg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14304E"/><stop offset="1" stop-color="#0A1826"/></linearGradient></defs>
-              <path d="M74 2 L142 43 V124 L74 165 L6 124 V43 Z" fill="url(#hxg3)" stroke="#1E90FF" stroke-opacity=".5" stroke-width="1.5"/>
-              <path d="M74 15 L130 49 V118 L74 152 L18 118 V49 Z" fill="none" stroke="#B09460" stroke-opacity=".5"/>
-            </svg>
-            <svg class="hx-spark" viewBox="102 48 486 486" fill="none"><path d="M345 76C345 197 441 293 562 293C441 293 345 389 345 510C345 389 249 293 128 293C249 293 345 197 345 76Z" fill="#B09460"/></svg>
-            <div class="hex-in"><div class="ha" style="white-space:nowrap;font-size:21px">ISO 9001</div><small>Certified</small></div>
-          </div>
-          <div class="hx-t">Lead Auditor<small>Quality Management</small></div>
-        </div>
-        <div class="hexw fade">
-          <div class="hex">
-            <svg class="shape" viewBox="0 0 148 167">
-              <defs><linearGradient id="hxg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14304E"/><stop offset="1" stop-color="#0A1826"/></linearGradient></defs>
-              <path d="M74 2 L142 43 V124 L74 165 L6 124 V43 Z" fill="url(#hxg4)" stroke="#1E90FF" stroke-opacity=".5" stroke-width="1.5"/>
-              <path d="M74 15 L130 49 V118 L74 152 L18 118 V49 Z" fill="none" stroke="#B09460" stroke-opacity=".5"/>
-            </svg>
-            <svg class="hx-spark" viewBox="102 48 486 486" fill="none"><path d="M345 76C345 197 441 293 562 293C441 293 345 389 345 510C345 389 249 293 128 293C249 293 345 197 345 76Z" fill="#B09460"/></svg>
-            <div class="hex-in"><div class="ha" style="white-space:nowrap;font-size:21px">CLSSBB</div><small>Certified</small></div>
-          </div>
-          <div class="hx-t">Lean Six Sigma<small>Black Belt</small></div>
-        </div>
-        <div class="hexw fade dl1">
-          <div class="hex">
-            <svg class="shape" viewBox="0 0 148 167">
-              <defs><linearGradient id="hxg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14304E"/><stop offset="1" stop-color="#0A1826"/></linearGradient></defs>
-              <path d="M74 2 L142 43 V124 L74 165 L6 124 V43 Z" fill="url(#hxg5)" stroke="#1E90FF" stroke-opacity=".5" stroke-width="1.5"/>
-              <path d="M74 15 L130 49 V118 L74 152 L18 118 V49 Z" fill="none" stroke="#B09460" stroke-opacity=".5"/>
-            </svg>
-            <svg class="hx-spark" viewBox="102 48 486 486" fill="none"><path d="M345 76C345 197 441 293 562 293C441 293 345 389 345 510C345 389 249 293 128 293C249 293 345 197 345 76Z" fill="#B09460"/></svg>
-            <div class="hex-in"><div class="ha" style="white-space:nowrap;font-size:21px">CKPIP</div><small>Certified</small></div>
-          </div>
-          <div class="hx-t">KPI Professional<small>Performance Management</small></div>
-        </div>
-        <div class="hexw fade dl2">
-          <div class="hex">
-            <svg class="shape" viewBox="0 0 148 167">
-              <defs><linearGradient id="hxg6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14304E"/><stop offset="1" stop-color="#0A1826"/></linearGradient></defs>
-              <path d="M74 2 L142 43 V124 L74 165 L6 124 V43 Z" fill="url(#hxg6)" stroke="#1E90FF" stroke-opacity=".5" stroke-width="1.5"/>
-              <path d="M74 15 L130 49 V118 L74 152 L18 118 V49 Z" fill="none" stroke="#B09460" stroke-opacity=".5"/>
-            </svg>
-            <svg class="hx-spark" viewBox="102 48 486 486" fill="none"><path d="M345 76C345 197 441 293 562 293C441 293 345 389 345 510C345 389 249 293 128 293C249 293 345 197 345 76Z" fill="#B09460"/></svg>
-            <div class="hex-in"><div class="ha" style="white-space:nowrap">CSP</div><small>Certified</small></div>
-          </div>
-          <div class="hx-t">Strategy Professional<small>Execution Alignment</small></div>
-        </div>
+      <div class="cred-list">
+      <div class="cred-row fade ">
+        <div class="cd-acro">PMP</div>
+        <div class="cd-name">Project Management Professional<small>PMI · Project Management Institute</small></div>
       </div>
+      <div class="cred-row fade dl1">
+        <div class="cd-acro">EFQM</div>
+        <div class="cd-name">Certified Assessor<small>EFQM Excellence Model</small></div>
+      </div>
+      <div class="cred-row fade dl2">
+        <div class="cd-acro">CAIE</div>
+        <div class="cd-name">Certified AI Expert<small>Artificial Intelligence</small></div>
+      </div>
+      <div class="cred-row fade dl3">
+        <div class="cd-acro">ISO 9001</div>
+        <div class="cd-name">Lead Auditor<small>ISO 9001:2015</small></div>
+      </div>
+      <div class="cred-row fade ">
+        <div class="cd-acro">CLSSBB</div>
+        <div class="cd-name">Lean Six Sigma Black Belt<small>Council for Six Sigma Certification</small></div>
+      </div>
+      <div class="cred-row fade dl1">
+        <div class="cd-acro">CKPIP</div>
+        <div class="cd-name">Certified KPI Professional<small>KPI Mega Library</small></div>
+      </div>
+      <div class="cred-row fade dl2">
+        <div class="cd-acro">CSP</div>
+        <div class="cd-name">Certified Strategy Professional<small>KPI Mega Library</small></div>
+      </div>
+    </div>
     </div>
   </section>
 
